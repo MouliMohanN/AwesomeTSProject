@@ -36,8 +36,8 @@ export class ErrorBoundry extends React.Component<any, State> {
     if (this.state.error) {
       return (
         <View>
-          <Text>{'Title: ' + this.getErrorMessage('title')}</Text>;
-          <Text>{'Body: ' + this.getErrorMessage('body')}</Text>;
+          <Text>{'Title: ' + this.getErrorMessage('title')}</Text>
+          <Text>{'Body: ' + this.getErrorMessage('body')}</Text>
         </View>
       );
     }
