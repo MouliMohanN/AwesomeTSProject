@@ -1,9 +1,11 @@
 import React from 'react';
+import {Button} from 'react-native';
 import {View, Text} from 'react-native';
-import {translate} from './translate';
+import RNRestart from 'react-native-restart';
 
 interface State {
   error: any;
+  errorInfo: any;
 }
 
 export class ErrorBoundry extends React.Component<any, State> {
@@ -11,6 +13,7 @@ export class ErrorBoundry extends React.Component<any, State> {
     super(props);
     this.state = {
       error: null,
+      errorInfo: null,
     };
   }
 
@@ -22,22 +25,21 @@ export class ErrorBoundry extends React.Component<any, State> {
 
   componentDidCatch(_error: any, _errorInfo: any) {
     console.error(_error, _errorInfo);
-    // this.setState({error: _error});
+    this.setState({error: _error, errorInfo: _errorInfo});
   }
-
-  getErrorMessage = (key: string) => {
-    if (key === 'title') {
-      return translate('errorBoundaryTitle');
-    }
-    return translate('errorBoundaryBody');
-  };
 
   render() {
     if (this.state.error) {
       return (
         <View>
-          <Text>{'Title: ' + this.getErrorMessage('title')}</Text>
-          <Text>{'Body: ' + this.getErrorMessage('body')}</Text>
+          <Text>{'Title: ' + this.state.error}</Text>
+          <Text>{'Body: ' + JSON.stringify(this.state.errorInfo)}</Text>
+          <Button
+            title="Restart App"
+            onPress={() => {
+              RNRestart.Restart();
+            }}
+          />
         </View>
       );
     }

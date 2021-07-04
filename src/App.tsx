@@ -10,12 +10,12 @@
 
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {SafeAreaView, StatusBar, View, Text, Button} from 'react-native';
+import {View, Text, Button} from 'react-native';
 import {ErrorBoundry} from './utils/ErrorBoundry';
 import {RootStack} from './utils/navigation/navigator';
+import Accordion from './animations/accordian';
 
 const Screen1 = ({navigation, route}) => (
   <View style={styles.screen}>
@@ -23,7 +23,7 @@ const Screen1 = ({navigation, route}) => (
     <Button
       title="Go to Screen 2"
       onPress={() => {
-        navigation.push('Screen2');
+        navigation.push('Accordion');
       }}
     />
   </View>
@@ -41,17 +41,10 @@ const Screen2 = ({navigation, route}) => (
   </View>
 );
 
-const renderScreens = () => {
-  //return <Text>{'Hello World'}</Text>;
-  /* return <RootStack.Screen name="Screen1" component={Screen1} />
-  <RootStack.Screen name="Screen2" component={Screen2} /> */
-};
-
 const App = () => {
   return (
     <ErrorBoundry>
       <NavigationContainer>
-        {/* <Text>Hello World!</Text> */}
         <RootStack.Navigator
           initialRouteName="Screen1"
           screenOptions={{
@@ -60,6 +53,13 @@ const App = () => {
           }}>
           <RootStack.Screen name="Screen1" component={Screen1} />
           <RootStack.Screen name="Screen2" component={Screen2} />
+          <RootStack.Screen
+            name="Accordion"
+            component={Accordion}
+            options={{
+              title: 'Accordion',
+            }}
+          />
         </RootStack.Navigator>
       </NavigationContainer>
     </ErrorBoundry>
