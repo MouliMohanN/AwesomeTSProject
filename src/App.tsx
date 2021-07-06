@@ -10,16 +10,25 @@
 
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
-import React from 'react';
+import React, {useRef} from 'react';
 import {StyleSheet} from 'react-native';
 import {View, Text, Button} from 'react-native';
 import {ErrorBoundry} from './utils/ErrorBoundry';
 import {RootStack} from './utils/navigation/navigator';
 import Accordion from './animations/accordian';
+import NumberRollerTextView from './utils/nativeModules';
+import {useEffect} from 'react';
 
 const Screen1 = ({navigation, route}) => (
   <View style={styles.screen}>
     <Text style={styles.title}>Screen 1</Text>
+    <NumberRollerTextView
+      style={{width: `100%`, height: 100}}
+      prefix={'Hello'}
+      //postfix={'World'}
+      initialValue={0}
+      finalValue={20000}
+    />
     <Button
       title="Go to Screen 2"
       onPress={() => {
@@ -42,6 +51,19 @@ const Screen2 = ({navigation, route}) => (
 );
 
 const App = () => {
+ /*  const counter = useRef(0);
+  const makJsThreadBusy = () => {
+    setTimeout(() => {
+      counter.current += 1;
+      console.log('makJsThreadBusy', counter.current);
+      makJsThreadBusy();
+    }, 0.1);
+  };
+
+  useEffect(() => {
+    makJsThreadBusy();
+  }, []); */
+
   return (
     <ErrorBoundry>
       <NavigationContainer>

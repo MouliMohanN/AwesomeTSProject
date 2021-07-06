@@ -59,6 +59,12 @@ const List = ({list}: ListProps) => {
     opacity: progress.value === 0 ? 0 : 1,
   }));
 
+  /* const _progress = useSharedValue(0);
+  const width = useDerivedValue(() => {
+    return _progress?.value || 1 * 250;
+  }); */
+
+  //console.log(`width: ${width}` /* , _progress: ${_progress?.value} */);
   return (
     <>
       <TouchableWithoutFeedback
@@ -69,6 +75,7 @@ const List = ({list}: ListProps) => {
               height.value = measure(aref).height;
             })();
           }
+          //_progress.value = Math.random();
           open.value = !open.value;
         }}>
         <Animated.View style={[styles.container, headerStyle]}>
