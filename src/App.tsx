@@ -24,7 +24,7 @@ const Screen1 = ({navigation, route}) => (
     <Text style={styles.title}>Screen 1</Text>
     <NumberRollerTextView
       style={{width: `100%`, height: 100}}
-      prefix={'Hello'}
+      prefix={'Hello world'}
       //postfix={'World'}
       initialValue={0}
       finalValue={20000}
